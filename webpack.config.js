@@ -28,6 +28,10 @@ module.exports = {
             loader: 'jade-loader',
             exclude: /(node_modules)/
         }, {
+            test: /\.js$/,
+            loader: 'babel',
+            exclude: /node_modules/
+        }, {
             test: /\.css$/,
             loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap')
         }, {
@@ -36,7 +40,16 @@ module.exports = {
         }, {
             test: /\.(png|jpg|gif)$/,
             loader: 'url-loader?limit=8192&name=images/[name].[ext]'
+        }, {
+            test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            loader: "file-loader"
+        }, {
+            test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            loader: "url-loader?limit=10000&minetype=application/font-woff"
         }]
+    },
+    babel: {
+        presets: ["es2015", "stage-0"]
     },
     plugins: [
         new ExtractTextPlugin('[name].css', {
@@ -45,6 +58,35 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin('common', 'common.js')
     ]
 }
+
+
+// 判断环境
+var prod = process.env.NODE_ENV === 'production';
+console.log(prod);
+module.exports.plugins = (module.exports.plugins || []);
+if (prod) {
+    module.exports.devtool = 'source-map';
+    module.exports.plugins = module.exports.plugins.concat([
+        // 借鉴vue官方的生成环境配置
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"production"'
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.NoErrorsPlugin(),
+        new webpack.BannerPlugin('vue')
+    ]);
+} else {
+    module.exports.devtool = 'eval-source-map';
+}
+
+
 
 //  处理html
 var conf = {
@@ -58,4 +100,4 @@ var conf = {
     chunks: ['common', 'index'],
     hash: true,
 }
- module.exports.plugins.push(new HtmlwebpackPlugin(conf));
+module.exports.plugins.push(new HtmlwebpackPlugin(conf));
