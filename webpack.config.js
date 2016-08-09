@@ -29,6 +29,10 @@ module.exports = {
     //babel重要的loader在这里
     module: {
         loaders: [{
+            test: /\.html$/,
+            loader: 'raw',
+            exclude: /(node_modules)/
+        }, {
             test: /.jade$/,
             loader: 'jade-loader',
             exclude: /(node_modules)/
