@@ -1,6 +1,13 @@
 doctype html
-html(lang="en")
+html(lang='en')
     head
+        meta(charset='UTF-8')
+        title StarTV
+        script(type="text/javascript",src="../link/zepto/zepto.min.js")
+        script(type="text/javascript",src="../link/underscore/underscore-min.js")
+        script(type="text/javascript",src="../link/backbone/backbone-min.js")
+    
         
     body
-        div hello worldfdfdaffdasfd!
+        include topBanner/topBanner1.jade
+        div#app

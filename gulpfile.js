@@ -16,7 +16,9 @@ gulp.task('server', ['build'], function() {
 
 gulp.task('build', function() {
     return gulp.src([
-            'app/src/utils/*.*'
+            'app/src/utils/*.*',
+            'app/link/*.*',
+            'app/link/**/*.*',
         ], {
             base: 'app/'
         })
@@ -25,7 +27,7 @@ gulp.task('build', function() {
 
 
 gulp.task('clean', function() {
-	const clean = require('gulp-clean');
-	return gulp.src('./app/www/')
-		.pipe(clean());
+    const clean = require('gulp-clean');
+    return gulp.src('./app/www/')
+        .pipe(clean());
 });
