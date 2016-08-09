@@ -9,6 +9,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // webpack扩展功能
 var containerPath = path.resolve('./');
+var alias = require('./bin/alias.js');
 
 // 入口
 module.exports = {
@@ -20,6 +21,10 @@ module.exports = {
         publicPath: './',
         filename: '[name].js',
         chunkFilename: '[name].[hash].js'
+    },
+    resolve: {
+        alias: alias,
+        extensions: ['', '.js', '.scss', '.png', '.jpg'],
     },
     //babel重要的loader在这里
     module: {
