@@ -11,7 +11,7 @@ var bannerView = BaseView.extend({
     },
     initialize: function() {
         this.bannerModel = new BannerModel();
-        var promise = this.bannerModel.executeJSONP({});
+        var promise = this.bannerModel.executeJSONP({deviceinfo: '{"aid":"30001001"}',});
         promise.done(function(response){
             console.log(response);
         });

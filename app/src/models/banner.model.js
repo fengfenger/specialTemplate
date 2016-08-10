@@ -6,8 +6,6 @@ var env = Config.env[Config.scheme];
 var base = require('base');
 var BaseModel = base.Model;
 
-import ajax from '../utils/ajax.js';
-
 var bannerModel = BaseModel.extend({
     url: '{{url_prefix}}/home/video_rec.json',
     beforeEmit: function beforeEmit() {
@@ -28,27 +26,6 @@ var bannerModel = BaseModel.extend({
             'd': '4444444'
         }]
     },
-    // 定义一些方法
-    executeJSONP: function(data) {
-        // deferred的对象
-        var defer = $.Deferred();
-        var options = {
-            beforeSend: function() {
-
-            },
-            success: function(response, state, xhr) {
-                defer.resolve(response, state, xhr);
-            },
-            complete: function() {
-
-            },
-            error: function(xhr, state, errors) {
-                defer.reject(xhr, state, errors);
-            }
-        };
-        // 返回ajax的promise的对象
-        return ajax(this.url, data, 300, options, defer);
-    }
 });
 
 module.exports = bannerModel;
