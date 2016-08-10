@@ -2,10 +2,10 @@
 import template from 'tplEng';
 
 var BaseView = Backbone.View.extend({
-    test:function(){
-        console.log('this is test plugin');
+    findDOMNode: function(exprs) {
+        return this.$el && this.$el.find(exprs);
     },
-    compileHTML:function(tplStr,data){
+    compileHTML: function(tplStr, data) {
         return template.compile(tplStr)(data);
     }
 });

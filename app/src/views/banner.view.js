@@ -2,7 +2,6 @@ var base = require('base');
 var BaseView = base.View;
 
 import BannerModel from '../models/banner.model.js';
-
 import listTemp from './template/banner-show-tpl.html';
 
 var bannerView = BaseView.extend({
@@ -11,7 +10,6 @@ var bannerView = BaseView.extend({
 
     },
     initialize: function() {
-        this.test();
         this.bannerModel = new BannerModel();
         var promise = this.bannerModel.executeJSONP({});
         promise.done(function(response){
