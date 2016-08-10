@@ -1,3 +1,7 @@
-{{each items as item}}
-<li>{{item}}</li>
+{{each bannerData as item i}}
+    <li><span>{{i}}</span>
+        {{each item as ite i}}
+            {{i}}<em>{{ite}}</em>
+        {{/each}}
+    </li>
 {{/each}}

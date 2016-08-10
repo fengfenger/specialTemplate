@@ -15,12 +15,7 @@ var bannerView = Backbone.View.extend({
         this.bannerModel = new BannerModel();
     },
     render: function() {
-        const items = [
-            '点击→播放专题页呈现，包括两侧挂幅前贴片',
-            'MV播放是是是',
-            '核心模块'
-        ];
-        this.$el.html(this.compileHTML(listTemp,{items:items}))
+        this.$el.html(this.compileHTML(listTemp,{bannerData:this.bannerModel.get('bannerData')}))
     }
 });
 
