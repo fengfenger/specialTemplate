@@ -3,10 +3,20 @@
 var Config = require('config');
 var env = Config.env[Config.scheme];
 
+var base = require('base');
+var BaseModel = base.Model;
+
 import ajax from '../utils/ajax.js';
 
-var bannerModel = Backbone.Model.extend({
-    url: env.url_prefix + '/home/video_rec.json',
+var bannerModel = BaseModel.extend({
+    // url: env.url_prefix + '/home/video_rec.json',
+    url: '{{url_prefix}}/home/video_rec.json',
+    beforeEmit: function beforeEmit() {
+        // 给请求地址替换一下环境变量
+        if (/^\{{0,2}(url_prefix)\}{0,2}/.test(this.url)) {
+            this.url = this.url.replace('{{url_prefix}}', env.url_prefix);
+        }
+    },
     defaults: {
         title: '我是banner内容的标题',
         bannerData: [{
@@ -38,7 +48,7 @@ var bannerModel = Backbone.Model.extend({
             }
         };
         // 返回ajax的promise的对象
-        return ajax(this.url,data,300,options,defer);
+        return ajax(this.url, data, 300, options, defer);
     }
 });
 

@@ -1,5 +1,6 @@
 var BaseView = require('./backboneExpand/baseView.js');
-
+var BaseModel = require('./backboneExpand/baseModel.js');
 module.exports = {
-    'View':BaseView
+    'Model': BaseModel,
+    'View': BaseView
 };
