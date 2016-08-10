@@ -1,17 +1,17 @@
+var base = require('base');
+var BaseView = base.View;
+
 import BannerModel from '../models/banner.model.js';
-// 模板的方法
-import template from 'tplEng';
+
 import listTemp from './template/banner-show-tpl.html';
 
-var bannerView = Backbone.View.extend({
+var bannerView = BaseView.extend({
     el: '#app',
     events: {
 
     },
-    compileHTML:function(tplStr,data){
-		return template.compile(tplStr)(data);
-	},
     initialize: function() {
+        this.test();
         this.bannerModel = new BannerModel();
         var promise = this.bannerModel.executeJSONP({});
         promise.done(function(response){
