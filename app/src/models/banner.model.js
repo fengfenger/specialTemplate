@@ -20,8 +20,25 @@ var bannerModel = Backbone.Model.extend({
         }]
     },
     // 定义一些方法
-    executeJSONP: function(data,delay) {
-        return ajax(this.url,data,delay);
+    executeJSONP: function(data) {
+        // deferred的对象
+        var defer = $.Deferred();
+        var options = {
+            beforeSend: function() {
+
+            },
+            success: function(response, state, xhr) {
+                defer.resolve(response, state, xhr);
+            },
+            complete: function() {
+
+            },
+            error: function(xhr, state, errors) {
+                defer.reject(xhr, state, errors);
+            }
+        };
+        // 返回ajax的promise的对象
+        return ajax(this.url,data,300,options,defer);
     }
 });
 
