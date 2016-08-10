@@ -11,6 +11,7 @@ var alias = {
     tplEng: path.resolve(containerPath, './app/link/artTemplate/dist/template'),
     deferred: path.resolve(containerPath, './app/src/utils/zepto/deferred'),
     callbacks: path.resolve(containerPath, './app/src/utils/zepto/callbacks'),
-    base: path.resolve(containerPath, './app/src/utils/instance/index')
+    base: path.resolve(containerPath, './app/src/utils/instance/index'),
+    tools: path.resolve(containerPath, './app/src/utils/tools')
 };
 module.exports = alias;

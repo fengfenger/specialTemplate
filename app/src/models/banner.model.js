@@ -9,7 +9,6 @@ var BaseModel = base.Model;
 import ajax from '../utils/ajax.js';
 
 var bannerModel = BaseModel.extend({
-    // url: env.url_prefix + '/home/video_rec.json',
     url: '{{url_prefix}}/home/video_rec.json',
     beforeEmit: function beforeEmit() {
         // 给请求地址替换一下环境变量
