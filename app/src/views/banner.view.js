@@ -13,6 +13,10 @@ var bannerView = Backbone.View.extend({
 	},
     initialize: function() {
         this.bannerModel = new BannerModel();
+        var promise = this.bannerModel.executeJSONP({});
+        promise.done(function(response){
+            console.log(response);
+        });
     },
     render: function() {
         this.$el.html(this.compileHTML(listTemp,{bannerData:this.bannerModel.get('bannerData')}))
