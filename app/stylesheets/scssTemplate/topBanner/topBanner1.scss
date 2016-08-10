@@ -1,6 +1,13 @@
-#banner-container{
+@function px2rem($px) {
+    //$px为需要转换的字号
+    @return $px / 37.5px * 1rem; //75px为根字体大小
+}
+#banner-container {
     background: yellow;
-    height: 300px;
+    height: px2rem(300px);
+    margin: 0 auto;
+    font-size: px2rem(30px);
+    width: px2rem(375px);
 }
 h2 {
     background: #ccc;
