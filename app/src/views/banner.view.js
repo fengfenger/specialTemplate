@@ -11,14 +11,11 @@ var bannerView = BaseView.extend({
     },
     initialize: function() {
         this.bannerModel = new BannerModel();
-        var promise = this.bannerModel.executeJSONP({deviceinfo: '{"aid":"30001001"}',});
+        var promise = this.bannerModel.executeJSONP({deviceinfo: '{"aid":"30001001"}'});
         var self = this;
         promise.done(function(response){
             console.log(self.bannerModel.get('data'));
         });
-
-        console.log(this.bannerModel);
-
     },
     render: function() {
         this.$el.html(this.compileHTML(listTemp,{bannerData:this.bannerModel.get('bannerData')}))
