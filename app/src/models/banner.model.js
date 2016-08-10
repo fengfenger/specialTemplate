@@ -6,7 +6,7 @@ var env = Config.env[Config.scheme];
 var base = require('base');
 var BaseModel = base.Model;
 
-var bannerModel = BaseModel.extend({
+var Model = BaseModel.extend({
     url: '{{url_prefix}}/home/video_rec.json',
     beforeEmit: function beforeEmit() {
         // 给请求地址替换一下环境变量
@@ -28,4 +28,13 @@ var bannerModel = BaseModel.extend({
     },
 });
 
-module.exports = bannerModel;
+
+var shared = null;
+Model.sharedInstanceModel = function sharedInstanceModel() {
+    if (!shared) {
+        shared = new Model();
+    }
+    return shared;
+};
+
+module.exports = Model;
